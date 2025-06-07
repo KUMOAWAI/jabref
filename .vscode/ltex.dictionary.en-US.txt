@@ -4,3 +4,6 @@ JabDrive
 JabRef
 OpenFastTrace
 OpenRewrite
+Temurin
+
+JabKit

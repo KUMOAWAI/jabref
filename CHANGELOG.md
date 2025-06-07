@@ -11,13 +11,189 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 
 ### Added
 
+- We added a tooltip to keywords that resemble Math Subject Classification (MSC) codes. [#12944](https://github.com/JabRef/jabref/issues/12944)
+- We added a feature to convert keywords that resemble MSC codes to their descriptions. [#12944](https://github.com/JabRef/jabref/issues/12944)
+- We introduced a new command line application called `jabkit`. [#13012](https://github.com/JabRef/jabref/pull/13012) [#110](https://github.com/JabRef/jabref/issues/110)
+- We added a new "Add JabRef suggested groups" option in the context menu of "All entries". [#12659](https://github.com/JabRef/jabref/issues/12659)
+- We added an option to create entries directly from Bib(La)TeX sources to the 'Create New Entry' tool. [#8808](https://github.com/JabRef/jabref/issues/8808)
+- We added the provision to choose different CSL bibliography body formats (e.g. First Line Indent, Hanging Indent, Bibliography 1, etc.) in the LibreOffice integration. [#13049](https://github.com/JabRef/jabref/issues/13049)
+- We added "Bibliography Heading" to the available CSL bibliography header formats in the LibreOffice integration. [#13049](https://github.com/JabRef/jabref/issues/13049)
+- We added [LOBID](https://lobid.org/) as an alternative ISBN-Fetcher. [#13076](https://github.com/JabRef/jabref/issues/13076)
+- We added a success dialog when using the "Copy to" option, indicating whether the entry was successfully copied and specifying if a cross-reference entry was included. [#12486](https://github.com/JabRef/jabref/issues/12486)
+- We added a new button to toggle the file path between an absolute and relative formats in context of library properties. [#13031](https://github.com/JabRef/jabref/issues/13031)
+- We introduced user-configurable group 'Imported entries' for automatic import of entries from web search, PDF import and web fetchers. [#12548](https://github.com/JabRef/jabref/issues/12548)
+- We added automatic selection of the “Enter Identifier” tab with pre-filled clipboard content if the clipboard contains a valid identifier when opening the “Create New Entry” dialog. [#13087](https://github.com/JabRef/jabref/issues/13087)
+- We added batch fetching of bibliographic data for multiple entries in the "Lookup" menu. [#12275](https://github.com/JabRef/jabref/issues/12275)
+- We added an "Open example library" button to Welcome Tab. [#13014](https://github.com/JabRef/jabref/issues/13014)
+- We added automatic detection and selection of the identifier type (e.g., DOI, ISBN, arXiv) based on clipboard content when opening the "New Entry" dialog [#13111](https://github.com/JabRef/jabref/pull/13111)
+- We added support for import of a Refer/BibIX file format. [#13069](https://github.com/JabRef/jabref/issues/13069)
+- We added a new `jabkit` command `pseudonymize` to pseudonymize the library. [#13109](https://github.com/JabRef/jabref/issues/13109)
+- We added functionality to focus running instance when trying to start a second instance. [#13129](https://github.com/JabRef/jabref/issues/13129)
+
+### Changed
+
+- We moved some functionality from the graphical application `jabref` with new command verbs `generate-citation-keys`, `check-consistency`, `fetch`, `search`, `convert`, `generate-bib-from-aux`, `preferences` and `pdf` to the new toolkit. [#13012](https://github.com/JabRef/jabref/pull/13012) [#110](https://github.com/JabRef/jabref/issues/110)
+- We merged the 'New Entry', 'Import by ID', and 'New Entry from Plain Text' tools into a single 'Create New Entry' tool. [#8808](https://github.com/JabRef/jabref/issues/8808)
+- We renamed the "Body Text" CSL bibliography header format name to "Text body" as per internal LibreOffice conventions. [#13074](https://github.com/JabRef/jabref/pull/13074)
+- We moved the "Modify bibliography title" option from the CSL styles tab of the Select Style dialog to the OpenOffice/LibreOffice side panel and renamed it to "Bibliography properties". [#13074](https://github.com/JabRef/jabref/pull/13074)
+- We changed path output display to show the relative path with respect to library path in context of library properties. [#13031](https://github.com/JabRef/jabref/issues/13031)
+- We improved JabRef's internal document viewer. It now allows text section, searching and highlighting of search terms and page rotation [#13193](https://github.com/JabRef/jabref/pull/13193).
+- When importing a PDF, there is no empty entry column shown in the multi merge dialog. [#13132](https://github.com/JabRef/jabref/issues/13132)
+- We added a progress dialog to the "Check consistency" action and progress output to the corresponding cli command. [#12487](https://github.com/JabRef/jabref/issues/12487)
+
+### Fixed
+
+- We added a fallback for the "Convert to biblatex" cleanup when it failed to populate the `date` field if `year` contained a full date in ISO format (e.g., `2011-11-11`). [#11868](https://github.com/JabRef/jabref/issues/11868)
+- We fixed an issue where directory check for relative path was not handled properly under library properties. [#13017](https://github.com/JabRef/jabref/issues/13017)
+- We fixed an issue where the option for which method to use when parsing plaintext citations was unavailable in the 'Create New Entry' tool. [#8808](https://github.com/JabRef/jabref/issues/8808)
+- We fixed an issue where the "Make/Sync bibliography" button in the OpenOffice/LibreOffice sidebar was not enabled when a jstyle was selected. [#13055](https://github.com/JabRef/jabref/pull/13055)
+- We fixed an issue where CSL bibliography title properties would be saved even if the "Modify bibliography title" dialog was closed without pressing the "OK" button. [#13074](https://github.com/JabRef/jabref/pull/13074)
+- We added "Hanging Indent" as the default selected bibliography body format for CSL styles that specify it (e.g. APA). [#13074](https://github.com/JabRef/jabref/pull/13074)
+- We fixed an issue where bibliography entries generated from CSL styles had leading spaces. [#13074](https://github.com/JabRef/jabref/pull/13074)
+- We fixed an issue where the preview area in the "Select Style" dialog of the LibreOffice integration was too small to display full content. [#13051](https://github.com/JabRef/jabref/issues/13051)
+- We fixed an issue where the tab showing the fulltext search results was not displayed. [#12865](https://github.com/JabRef/jabref/issues/12865)
+
+### Removed
+
+- We removed the ability to change internal preference values. [#13012](https://github.com/JabRef/jabref/pull/13012)
+- We removed support for MySQL/MariaDB and Oracle. [#12990](https://github.com/JabRef/jabref/pull/12990)
+- We removed library migrations (users need to use JabRef 6.0-alpha.1 to perform migrations) [#12990](https://github.com/JabRef/jabref/pull/12990)
+
+## [6.0-alpha2] – 2025-04-27
+
+### Added
+
+- We added a button in Privacy notice and Mr. DLib Privacy settings notice for hiding related tabs. [#11707](https://github.com/JabRef/jabref/issues/11707)
+- We added buttons "Add example entry" and "Import existing PDFs" when a library is empty, making it easier for new users to get started. [#12662](https://github.com/JabRef/jabref/issues/12662)
+- In the Open/LibreOffice integration, we added the provision to modify the bibliography title and its format for CSL styles, in the "Select style" dialog. [#12663](https://github.com/JabRef/jabref/issues/12663)
+- We added a new Welcome tab which shows a welcome screen if no database is open. [#12272](https://github.com/JabRef/jabref/issues/12272)
+- We added <kbd>F5</kbd> as a shortcut key for fetching data and <kbd>Alt+F</kbd> as a shortcut for looking up data using DOI. [#11802](https://github.com/JabRef/jabref/issues/11802)
+- We added a feature to rename the subgroup, with the keybinding (<kbd>F2</kbd>) for quick access. [#11896](https://github.com/JabRef/jabref/issues/11896)
+- We added a new functionality that displays a drop-down list of matching suggestions when typing a citation key pattern. [#12502](https://github.com/JabRef/jabref/issues/12502)
+- We added a new CLI that supports txt, csv, and console-based output for consistency in BibTeX entries. [#11984](https://github.com/JabRef/jabref/issues/11984)
+- We added a new dialog for bibliography consistency check. [#11950](https://github.com/JabRef/jabref/issues/11950)
+- We added a feature for copying entries to libraries, available via the context menu, with an option to include cross-references. [#12374](https://github.com/JabRef/jabref/pull/12374)
+- We added a new "Copy citation (text)" button in the context menu of the preview. [#12551](https://github.com/JabRef/jabref/issues/12551)
+- We added a new "Export to clipboard" button in the context menu of the preview. [#12551](https://github.com/JabRef/jabref/issues/12551)
+- We added an integrity check if a URL appears in a title. [#12354](https://github.com/JabRef/jabref/issues/12354)
+- We added a feature for enabling drag-and-drop of files into groups  [#12540](https://github.com/JabRef/jabref/issues/12540)
+- We added support for reordering keywords via drag and drop, automatic alphabetical ordering, and improved pasting and editing functionalities in the keyword editor. [#10984](https://github.com/JabRef/jabref/issues/10984)
+- We added a new functionality where author names having multiple spaces in-between will be considered as separate user block as it does for " and ". [#12701](https://github.com/JabRef/jabref/issues/12701)
+- We added a set of example questions to guide users in starting meaningful AI chat interactions. [#12702](https://github.com/JabRef/jabref/issues/12702)
+- We added support for loading and displaying BibTeX .blg warnings in the Check integrity dialog, with custom path selection and metadata persistence. [#11998](https://github.com/JabRef/jabref/issues/11998)
+- We added an option to choose whether to open the file explorer in the files directory or in the last opened directory when attaching files. [#12554](https://github.com/JabRef/jabref/issues/12554)
+- We enhanced support for parsing XMP metadata from PDF files. [#12829](https://github.com/JabRef/jabref/issues/12829)
+- We added a "Preview" header in the JStyles tab in the "Select style" dialog, to make it consistent with the CSL styles tab. [#12838](https://github.com/JabRef/jabref/pull/12838)
+- We added automatic PubMed URL insertion when importing from PubMed if no URL is present. [#12832](https://github.com/JabRef/jabref/issues/12832/)
+- We added a "LTWA" abbreviation feature in the "Quality > Abbreviate journal names > LTWA" menu [#12273](https://github.com/JabRef/jabref/issues/12273/)
+- We added path validation to file directories in library properties dialog. [#11840](https://github.com/JabRef/jabref/issues/11840)
+- We now support usage of custom CSL styles in the Open/LibreOffice integration. [#12337](https://github.com/JabRef/jabref/issues/12337)
+- We added support for citation-only CSL styles which don't specify bibliography formatting. [#12996](https://github.com/JabRef/jabref/pull/12996)
+
+### Changed
+
+- We reordered the settings in the 'Entry editor' tab in preferences. [#11707](https://github.com/JabRef/jabref/issues/11707)
+- Added "$" to the citation key generator preferences default list of characters to remove [#12536](https://github.com/JabRef/jabref/issues/12536)
+- We changed the message displayed in the Integrity Check Progress dialog to "Waiting for the check to finish...". [#12694](https://github.com/JabRef/jabref/issues/12694)
+- We moved the "Generate a new key for imported entries" option from the "Web search" tab to the "Citation key generator" tab in preferences. [#12436](https://github.com/JabRef/jabref/pull/12436)
+- We improved the offline parsing of BibTeX data from PDF-documents. [#12278](https://github.com/JabRef/jabref/issues/12278)
+- The tab bar is now hidden when only one library is open. [#9971](https://github.com/JabRef/jabref/issues/9971)
+- We renamed "Rename file to a given name" to "Rename files to configured filename format pattern" in the entry editor. [#12587](https://github.com/JabRef/jabref/pull/12587)
+- We renamed "Move DOIs from note and URL field to DOI field and remove http prefix" to "Move DOIs from 'note' field and 'URL' field to 'DOI' field and remove http prefix" in the Cleanup entries. [#12587](https://github.com/JabRef/jabref/pull/12587)
+- We renamed "Move preprint information from 'URL' and 'journal' field to the 'eprint' field" to "Move preprint information from 'URL' field and 'journal' field to the 'eprint' field" in the Cleanup entries. [#12587](https://github.com/JabRef/jabref/pull/12587)
+- We renamed "Move URL in note field to url field" to "Move URL in 'note' field to 'URL' field" in the Cleanup entries. [#12587](https://github.com/JabRef/jabref/pull/12587)
+- We renamed "Rename PDFs to given filename format pattern" to "Rename files to configured filename format pattern" in the Cleanup entries. [#12587](https://github.com/JabRef/jabref/pull/12587)
+- We renamed "Rename only PDFs having a relative path" to "Only rename files that have a relative path" in the Cleanup entries. [#12587](https://github.com/JabRef/jabref/pull/12587)
+- We renamed "Filename format pattern: " to "Filename format pattern (from preferences)" in the Cleanup entries. [#12587](https://github.com/JabRef/jabref/pull/12587)
+- When working with CSL styles in LibreOffice, citing with a new style now updates all other citations in the document to have the currently selected style. [#12472](https://github.com/JabRef/jabref/pull/12472)
+- We improved the user comments field visibility so that it remains displayed if it contains text. Additionally, users can now easily toggle the field on or off via buttons unless disabled in preferences. [#11021](https://github.com/JabRef/jabref/issues/11021)
+- The LibreOffice integration for CSL styles is now more performant. [#12472](https://github.com/JabRef/jabref/pull/12472)
+- The "automatically sync bibliography when citing" feature of the LibreOffice integration is now disabled by default (can be enabled in settings). [#12472](https://github.com/JabRef/jabref/pull/12472)
+- For the Citation key generator patterns, we reverted how `[authorsAlpha]` would behave to the original pattern and renamed the LNI-based pattern introduced in V6.0-alpha to `[authorsAlphaLNI]`. [#12499](https://github.com/JabRef/jabref/pull/12499)
+- We keep the list of recent files if one files could not be found. [#12517](https://github.com/JabRef/jabref/pull/12517)
+- During the import process, the labels indicating individual paragraphs within an abstract returned by PubMed/Medline XML are preserved. [#12527](https://github.com/JabRef/jabref/issues/12527)
+- We changed the "Copy Preview" button to "Copy citation (html) in the context menu of the preview. [#12551](https://github.com/JabRef/jabref/issues/12551)
+- Pressing Tab in empty text fields of the entry editor now moves the focus to the next field instead of inserting a tab character. [#11938](https://github.com/JabRef/jabref/issues/11938)
+- The embedded PostgresSQL server for the search now supports Linux and macOS ARM based distributions natively [#12607](https://github.com/JabRef/jabref/pull/12607)
+- We disabled the search and group fields in the sidebar when no library is opened. [#12657](https://github.com/JabRef/jabref/issues/12657)
+- We removed the obsolete Twitter link and added Mastodon and LinkedIn links in Help -> JabRef resources. [#12660](https://github.com/JabRef/jabref/issues/12660)
+- We improved the Check Integrity dialog entry interaction so that a single click focuses on the corresponding entry and a double-click both focuses on the entry and closes the dialog. [#12245](https://github.com/JabRef/jabref/issues/12245)
+- We improved journal abbreviation lookup with fuzzy matching to handle minor input errors and variations. [#12467](https://github.com/JabRef/jabref/issues/12467)
+- We changed the phrase "Cleanup entries" to "Clean up entries". [#12703](https://github.com/JabRef/jabref/issues/12703)
+- A tooltip now appears after 300ms (instead of 2s). [#12649](https://github.com/JabRef/jabref/issues/12649)
+- We improved search in preferences and keybindings. [#12647](https://github.com/JabRef/jabref/issues/12647)
+- We improved the performance of the LibreOffice integration when inserting CSL citations/bibliography. [#12851](https://github.com/JabRef/jabref/pull/12851)
+- 'Affected fields' and 'Do not wrap when saving' are now displayed as tags. [#12550](https://github.com/JabRef/jabref/issues/12550)
+- We revamped the UI of the Select Style dialog (in the LibreOffice panel) for CSL styles. [#12951](https://github.com/JabRef/jabref/pull/12951)
+- We reduced the delay in populating the list of CSL styles in the Select Style dialog of the LibreOffice panel. [#12951](https://github.com/JabRef/jabref/pull/12951)
+
+### Fixed
+
+- We fixed an issue where pasted entries would sometimes end up in the search bar instead of the main table [#12910](https://github.com/JabRef/jabref/issues/12910)
+- We fixed an issue where warning signs were improperly positioned next to text fields containing capital letters. [#12884](https://github.com/JabRef/jabref/issues/12884)
+- We fixed an issue where the drag'n'drop functionality in entryeditor did not work [#12561](https://github.com/JabRef/jabref/issues/12561)
+- We fixed an issue where the F4 shortcut key did not work without opening the right-click context menu. [#6101](https://github.com/JabRef/jabref/pull/6101)
+- We fixed an issue where the file renaming dialog was not resizable and its size was too small for long file names. [#12518](https://github.com/JabRef/jabref/pull/12518)
+- We fixed an issue where the name of the untitled database was shown as a blank space in the right-click context menu's "Copy to" option. [#12459](https://github.com/JabRef/jabref/pull/12459)
+- We fixed an issue where the F3 shortcut key did not work without opening the right-click context menu. [#12417](https://github.com/JabRef/jabref/pull/12417)
+- We fixed an issue where a bib file with UFF-8 charset was wrongly loaded with a different charset [forum#5369](https://discourse.jabref.org/t/jabref-5-15-opens-bib-files-with-shift-jis-encoding-instead-of-utf-8/5369/)
+- We fixed an issue where new entries were inserted in the middle of the table instead of at the end. [#12371](https://github.com/JabRef/jabref/pull/12371)
+- We fixed an issue where removing the sort from the table did not restore the original order. [#12371](https://github.com/JabRef/jabref/pull/12371)
+- We fixed an issue where citation keys containing superscript (`^`) and subscript (`_`) characters in text mode were incorrectly flagged by the integrity checker. [#12391](https://github.com/JabRef/jabref/pull/12391)
+- We fixed an issue where JabRef icon merges with dark background [#7771](https://github.com/JabRef/jabref/issues/7771)
+- We fixed an issue where an entry's group was no longer highlighted on selection [#12413](https://github.com/JabRef/jabref/issues/12413)
+- We fixed an issue where BibTeX Strings were not included in the backup file [#12462](https://github.com/JabRef/jabref/issues/12462)
+- We fixed an issue where mixing JStyle and CSL style citations in LibreOffice caused two separate bibliography sections to be generated. [#12262](https://github.com/JabRef/jabref/issues/12262)
+- We fixed an issue in the LibreOffice integration where the formatting of text (e.g. superscript) was lost when using certain numeric CSL styles. [#12472](https://github.com/JabRef/jabref/pull/12472)
+- We fixed an issue where CSL style citations with citation keys having special characters (such as hyphens, colons or slashes) would not be recognized as valid by JabRef. [forum#5431](https://discourse.jabref.org/t/error-when-connecting-to-libreoffice/5431)
+- We fixed an issue where the `[authorsAlpha]` pattern in Citation key generator would not behave as per the user documentation. [#12312](https://github.com/JabRef/jabref/issues/12312)
+- We fixed an issue where import at "Search for unlinked local files" would re-add already imported files. [#12274](https://github.com/JabRef/jabref/issues/12274)
+- We fixed an issue where month values 21–24 (ISO 8601-2019 season codes) in Biblatex date fields were not recognized as seasons during parsing. [#12437](https://github.com/JabRef/jabref/issues/12437)
+- We fixed an issue where migration of "Search groups" would fail with an exception when the search query is invalid. [#12555](https://github.com/JabRef/jabref/issues/12555)
+- We fixed an issue where not all linked files from BibDesk in the field `bdsk-file-...` were parsed. [#12555](https://github.com/JabRef/jabref/issues/12555)
+- We fixed an issue where it was possible to select "Search for unlinked local files" for a new (unsaved) library. [#12558](https://github.com/JabRef/jabref/issues/12558)
+- We fixed an issue where user-defined keyword separator does not apply to Merge Groups. [#12535](https://github.com/JabRef/jabref/issues/12535)
+- We fixed an issue where duplicate items cannot be removed correctly when merging groups or keywords. [#12585](https://github.com/JabRef/jabref/issues/12585)
+- We fixed an issue where JabRef displayed an incorrect deletion notification when canceling entry deletion [#12645](https://github.com/JabRef/jabref/issues/12645)
+- We fixed an issue where JabRef displayed an incorrect deletion notification when canceling entry deletion. [#12645](https://github.com/JabRef/jabref/issues/12645)
+- We fixed an issue where JabRref wrote wrong field names into the PDF. [#12833](https://github.com/JabRef/jabref/pulls/12833)
+- We fixed an issue where an exception would occur when running abbreviate journals for multiple entries. [#12634](https://github.com/JabRef/jabref/issues/12634)
+- We fixed an issue Where JabRef displayed an inconsistent search results for date-related queries[#12296](https://github.com/JabRef/jabref/issues/12296)
+- We fixed an issue where JabRef displayed dropdown triangle in wrong place in "Search for unlinked local files" dialog [#12713](https://github.com/JabRef/jabref/issues/12713)
+- We fixed an issue where JabRef would not open if an invalid external journal abbreviation path was encountered. [#12776](https://github.com/JabRef/jabref/issues/12776)
+- We fixed a bug where LaTeX commands were not removed from filenames generated using the `[bibtexkey] - [fulltitle]` pattern. [#12188](https://github.com/JabRef/jabref/issues/12188)
+- We fixed an issue where JabRef interface would not properly refresh after a group removal. [#11487](https://github.com/JabRef/jabref/issues/11487)
+- We fixed an issue where valid DOI could not be imported if it had special characters like `<` or `>`. [#12434](https://github.com/JabRef/jabref/issues/12434)
+- We fixed an issue where JabRef displayed an "unknown format" message when importing a .bib file, preventing the associated groups from being imported as well. [#11025](https://github.com/JabRef/jabref/issues/11025)
+- We fixed an issue where the tooltip only displayed the first linked file when hovering. [#12470](https://github.com/JabRef/jabref/issues/12470)
+- We fixed an issue where JabRef would crash when trying to display an entry in the Citation Relations tab that had right to left text. [#12410](https://github.com/JabRef/jabref/issues/12410)
+- We fixed an issue where some texts in the "Citation Information" tab and the "Preferences" dialog could not be translated. [#12883](https://github.com/JabRef/jabref/pull/12883)
+- We fixed an issue where file names were missing the citation key according to the filename format pattern after import. [#12556](https://github.com/JabRef/jabref/issues/12556)
+- We fixed an issue where downloading PDFs from URLs to empty entries resulted in meaningless filenames like "-.pdf". [#12917](https://github.com/JabRef/jabref/issues/12917)
+- We fixed an issue where pasting a PDF URL into the main table caused an import error instead of creating a new entry. [#12911](https://github.com/JabRef/jabref/pull/12911)
+- We fixed an issue where libraries would sometimes be hidden when closing tabs with the Welcome tab open. [#12894](https://github.com/JabRef/jabref/issues/12894)
+- We fixed an issue with deleting entries in large libraries that caused it to take a long time. [#8976](https://github.com/JabRef/jabref/issues/8976)
+- We fixed an issue where "Reveal in file explorer" option was disabled for newly saved libraries until reopening the file. [#12722](https://github.com/JabRef/jabref/issues/12722)
+
+### Removed
+
+- "Web of Science" [journal abbreviation list](https://docs.jabref.org/advanced/journalabbreviations) was removed. [abbrv.jabref.org#176](https://github.com/JabRef/abbrv.jabref.org/issues/176)
+
+## [6.0-alpha] – 2024-12-23
+
+### Added
+
+- We added a Markdown export layout. [#12220](https://github.com/JabRef/jabref/pull/12220)
 - We added a "view as BibTeX" option before importing an entry from the citation relation tab. [#11826](https://github.com/JabRef/jabref/issues/11826)
 - We added support finding LaTeX-encoded special characters based on plain Unicode and vice versa. [#11542](https://github.com/JabRef/jabref/pull/11542)
 - When a search hits a file, the file icon of that entry is changed accordingly. [#11542](https://github.com/JabRef/jabref/pull/11542)
 - We added an AI-based chat for entries with linked PDF files. [#11430](https://github.com/JabRef/jabref/pull/11430)
 - We added an AI-based summarization possibility for entries with linked PDF files. [#11430](https://github.com/JabRef/jabref/pull/11430)
+- We added an AI section in JabRef's [preferences](https://docs.jabref.org/ai/preferences). [#11430](https://github.com/JabRef/jabref/pull/11430)
+- We added AI providers: OpenAI, Mistral AI, Hugging Face and Google. [#11430](https://github.com/JabRef/jabref/pull/11430), [#11736](https://github.com/JabRef/jabref/pull/11736)
+- We added AI providers: [Ollama](https://docs.jabref.org/ai/local-llm#step-by-step-guide-for-ollama) and GPT4All, which add the possibility to use local LLMs privately on your own device. [#11430](https://github.com/JabRef/jabref/pull/11430), [#11870](https://github.com/JabRef/jabref/issues/11870)
 - We added support for selecting and using CSL Styles in JabRef's OpenOffice/LibreOffice integration for inserting bibliographic and in-text citations into a document. [#2146](https://github.com/JabRef/jabref/issues/2146), [#8893](https://github.com/JabRef/jabref/issues/8893)
-- We added Tools > New library based on references in PDF file... to create a new library based on the references section in a PDF file. [#11522](https://github.com/JabRef/jabref/pull/11522)
+- We added "Tools > New library based on references in PDF file" ... to create a new library based on the references section in a PDF file. [#11522](https://github.com/JabRef/jabref/pull/11522)
 - When converting the references section of a paper (PDF file), more than the last page is treated. [#11522](https://github.com/JabRef/jabref/pull/11522)
 - Added the functionality to invoke offline reference parsing explicitly. [#11565](https://github.com/JabRef/jabref/pull/11565)
 - The dialog for [adding an entry using reference text](https://docs.jabref.org/collect/newentryfromplaintext) is now filled with the clipboard contents as default. [#11565](https://github.com/JabRef/jabref/pull/11565)
@@ -32,15 +208,19 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - We added support for drag'n'drop on an entry in the maintable to an external application to get the entry preview dropped. [#11846](https://github.com/JabRef/jabref/pull/11846)
 - We added the functionality to double click on a [LaTeX citation](https://docs.jabref.org/advanced/entryeditor/latex-citations) to jump to the respective line in the LaTeX editor. [#11996](https://github.com/JabRef/jabref/issues/11996)
 - We added a different background color to the search bar to indicate when the search syntax is wrong. [#11658](https://github.com/JabRef/jabref/pull/11658)
-- We added a setting which always adds the literal "Cited on pages" text before each JStyle citation. [#11691](https://github.com/JabRef/jabref/pull/11732)
+- We added a setting which always adds the literal "Cited on pages" text before each JStyle citation. [#11691](https://github.com/jabref/jabref/issues/11691)
 - We added a new plain citation parser that uses LLMs. [#11825](https://github.com/JabRef/jabref/issues/11825)
+- We added support for `langid` field for biblatex libraries. [#10868](https://github.com/JabRef/jabref/issues/10868)
 - We added support for modifier keys when dropping a file on an entry in the main table. [#12001](https://github.com/JabRef/jabref/pull/12001)
 - We added an importer for SSRN URLs. [#12021](https://github.com/JabRef/jabref/pull/12021)
 - We added a compare button to the duplicates in the citation relations tab to open the "Possible duplicate entries" window. [#11192](https://github.com/JabRef/jabref/issues/11192)
 - We added automatic browser extension install on Windows for Chrome and Edge. [#6076](https://github.com/JabRef/jabref/issues/6076)
+- We added support to automatically open a `.bib` file in the current/parent folder if no other library is opened. [koppor#377](https://github.com/koppor/jabref/issues/377)
 - We added a search bar for filtering keyboard shortcuts. [#11686](https://github.com/JabRef/jabref/issues/11686)
+- We added new modifiers `camel_case`, `camel_case_n`, `short_title`, and `very_short_title` for the [citation key generator](https://docs.jabref.org/setup/citationkeypatterns). [#11367](https://github.com/JabRef/jabref/issues/11367)
 - By double clicking on a local citation in the Citation Relations Tab you can now jump the linked entry. [#11955](https://github.com/JabRef/jabref/pull/11955)
 - We use the menu icon for background tasks as a progress indicator to visualise an import's progress when dragging and dropping several PDF files into the main table. [#12072](https://github.com/JabRef/jabref/pull/12072)
+- The PDF content importer now supports importing title from upto the second page of the PDF. [#12139](https://github.com/JabRef/jabref/issues/12139)
 
 ### Changed
 
@@ -58,6 +238,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - ⚠️ We relaxed the escaping requirements for [bracketed patterns](https://docs.jabref.org/setup/citationkeypatterns), which are used for the [citaton key generator](https://docs.jabref.org/advanced/entryeditor#autogenerate-citation-key) and [filename and directory patterns](https://docs.jabref.org/finding-sorting-and-cleaning-entries/filelinks#auto-linking-files). One only needs to write `\"` if a quote sign should be escaped. All other escapings are not necessary (and working) any more. [#11967](https://github.com/JabRef/jabref/pull/11967)
 - When importing BibTeX data starging from on a PDF, the XMP metadata takes precedence over Grobid data. [#11992](https://github.com/JabRef/jabref/pull/11992)
 - JabRef now uses TLS 1.2 for all HTTPS connections. [#11852](https://github.com/JabRef/jabref/pull/11852)
+- We improved the functionality of getting BibTeX data out of PDF files. [#11999](https://github.com/JabRef/jabref/issues/11999)
 - We improved the display of long messages in the integrity check dialog. [#11619](https://github.com/JabRef/jabref/pull/11619)
 - We improved the undo/redo buttons in the main toolbar and main menu to be disabled when there is nothing to undo/redo. [#8807](https://github.com/JabRef/jabref/issues/8807)
 - We improved the DOI detection in PDF imports. [#11782](https://github.com/JabRef/jabref/pull/11782)
@@ -66,8 +247,14 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - We changed instances of 'Search Selected' to 'Search Pre-configured' in Web Search Preferences UI. [#11871](https://github.com/JabRef/jabref/pull/11871)
 - We added a new CSS style class `main-table` for the main table. [#11881](https://github.com/JabRef/jabref/pull/11881)
 - When renaming a file, the old extension is now used if there is none provided in the new name. [#11903](https://github.com/JabRef/jabref/issues/11903)
-- We changed the name of the library-based file directory from 'General File Directory' to 'Library-specific File Directory' per issue [#571](https://github.com/koppor/jabref/issues/571)
+- When importing a file using "Find Unlinked Files", when one or more file directories are available, the file path will be relativized where possible [koppor#549](https://github.com/koppor/jabref/issues/549)
+- We added minimum window sizing for windows dedicated to creating new entries [#11944](https://github.com/JabRef/jabref/issues/11944)
+- We changed the name of the library-based file directory from 'General File Directory' to 'Library-specific File Directory' per issue. [#571](https://github.com/koppor/jabref/issues/571)
+- We changed the defualt [unwanted charachters](https://docs.jabref.org/setup/citationkeypatterns#removing-unwanted-characters) in the citation key generator and allow a dash (`-`) and colon (`:`) being part of a citation key. [#12144](https://github.com/JabRef/jabref/pull/12144)
 - The CitationKey column is now a default shown column for the entry table. [#10510](https://github.com/JabRef/jabref/issues/10510)
+- We disabled the actions "Open Terminal here" and "Reveal in file explorer" for unsaved libraries. [#11920](https://github.com/JabRef/jabref/issues/11920)
+- JabRef now opens the corresponding directory in the library properties when "Browse" is clicked. [#12223](https://github.com/JabRef/jabref/pull/12223)
+- We changed the icon for macOS to be more consistent with Apple's Guidelines [#8443](https://github.com/JabRef/jabref/issues/8443)
 
 ### Fixed
 
@@ -101,23 +288,25 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - We fixed an issue where recently opened files were not displayed in the main menu properly. [#9042](https://github.com/JabRef/jabref/issues/9042)
 - We fixed an issue where the DOI lookup would show an error when a DOI was found for an entry. [#11850](https://github.com/JabRef/jabref/issues/11850)
 - We fixed an issue where <kbd>Tab</kbd> cannot be used to jump to next field in some single-line fields. [#11785](https://github.com/JabRef/jabref/issues/11785)
+- We fixed an issue where the "Do not ask again" checkbox was not working, when asking for permission to use Grobid [koppor#556](https://github.com/koppor/jabref/issues/566).
 - We fixed an issue where we display warning message for moving attached open files. [#10121](https://github.com/JabRef/jabref/issues/10121)
 - We fixed an issue where it was not possible to select selecting content of other user's comments.[#11106](https://github.com/JabRef/jabref/issues/11106)
+- We fixed an issue when handling URLs containing a pipe (`|`) character. [#11876](https://github.com/JabRef/jabref/issues/11876)
 - We fixed an issue where web search preferences "Custom API key" table modifications not discarded. [#11925](https://github.com/JabRef/jabref/issues/11925)
+- We fixed an issue when opening attached files in [extra file columns](https://docs.jabref.org/finding-sorting-and-cleaning-entries/filelinks#adding-additional-columns-to-entry-table-for-file-types). [#12005](https://github.com/JabRef/jabref/issues/12005)
 - We fixed an issue where trying to open a library from a failed mounted directory on Mac would cause an error. [#10548](https://github.com/JabRef/jabref/issues/10548)
+- We fixed an issue when the preview was out of sync. [#9172](https://github.com/JabRef/jabref/issues/9172)
 - We fixed an issue where identifier paste couldn't work with Unicode REPLACEMENT CHARACTER. [#11986](https://github.com/JabRef/jabref/issues/11986)
+- We fixed an issue when click on entry at "Check Integrity" wasn't properly focusing the entry and field. [#11997](https://github.com/JabRef/jabref/issues/11997)
+- We fixed an issue with the ui not scaling when changing the font size [#11219](https://github.com/JabRef/jabref/issues/11219)
+- We fixed an issue where a custom application for external file types would not be saved [#12311](https://github.com/JabRef/jabref/issues/12311)
+- We fixed an issue where a file that no longer exists could not be deleted from an entry using keyboard shortcut [#9731](https://github.com/JabRef/jabref/issues/9731)
 
 ### Removed
 
 - We removed the description of search strings. [#11542](https://github.com/JabRef/jabref/pull/11542)
 - We removed support for importing using the SilverPlatterImporter (`Record INSPEC`). [#11576](https://github.com/JabRef/jabref/pull/11576)
 - We removed support for automatically generating file links using the CLI (`--automaticallySetFileLinks`).
-
-
-
-
-
-
 
 ## [5.15] – 2024-07-10
 
@@ -174,7 +363,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - We fixed that the import of the related articles tab sometimes used the wrong library mode. [#11282](https://github.com/JabRef/jabref/pull/11282)
 - We fixed an issue where the entry editor context menu was not shown correctly when JabRef is opened on a second, extended screen [#11323](https://github.com/JabRef/jabref/issues/11323), [#11174](https://github.com/JabRef/jabref/issues/11174)
 - We fixed an issue where the value of "Override default font settings" was not applied on startup [#11344](https://github.com/JabRef/jabref/issues/11344)
-- We fixed an issue when "Library changed on disk" appeared after a save by JabRef. [#4877](https://github.com/JabRef/jabref/issues/4877)  
+- We fixed an issue when "Library changed on disk" appeared after a save by JabRef. [#4877](https://github.com/JabRef/jabref/issues/4877)
 - We fixed an issue where the Pubmed/Medline Plain importer would not respect the user defined keyword separator [#11413](https://github.com/JabRef/jabref/issues/11413)
 - We fixed an issue where the value of "Override default font settings" was not applied on startup [#11344](https://github.com/JabRef/jabref/issues/11344)
 - We fixed an issue where DatabaseChangeDetailsView was not scrollable when reviewing external metadata changes [#11220](https://github.com/JabRef/jabref/issues/11220)
@@ -193,7 +382,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - We added a "refresh" button for the LaTeX citations tab in the entry editor. [#10584](https://github.com/JabRef/jabref/issues/10584)
 - We added the possibility to show the BibTeX source in the [web search](https://docs.jabref.org/collect/import-using-online-bibliographic-database) import screen. [#560](https://github.com/koppor/jabref/issues/560)
 - We added a fetcher for [ISIDORE](https://isidore.science/), simply paste in the link into the text field or the last 6 digits in the link that identify that paper. [#10423](https://github.com/JabRef/jabref/issues/10423)
-- When importing entries form the "Citation relations" tab, the field [cites](https://docs.jabref.org/advanced/entryeditor/entrylinks) is now filled according to the relationship between the entries. [#10572](https://github.com/JabRef/jabref/pull/10752)
+- When importing entries form the "Citation relations" tab, the field [cites](https://docs.jabref.org/advanced/entryeditor/entrylinks) is now filled according to the relationship between the entries. [#10752](https://github.com/JabRef/jabref/pull/10752)
 - We added a new integrity check and clean up option for strings having Unicode characters not encoded in [Unicode "Normalization Form Canonical Composition" (NFC)](https://en.wikipedia.org/wiki/Unicode_equivalence#Normal_forms"). [#10506](https://github.com/JabRef/jabref/issues/10506)
 - We added a new group icon column to the main table showing the icons of the entry's groups. [#10801](https://github.com/JabRef/jabref/pull/10801)
 - When deleting an entry, the files linked to the entry are now optionally deleted as well. [#10509](https://github.com/JabRef/jabref/issues/10509)
@@ -221,7 +410,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - The Custom export format now uses the custom DOI base URI in the preferences for the `DOICheck`, if activated [forum#4084](https://discourse.jabref.org/t/export-html-disregards-custom-doi-base-uri/4084)
 - The index directories for full text search have now more readable names to increase debugging possibilities using Apache Lucense's Lurk. [#10193](https://github.com/JabRef/jabref/issues/10193)
 - The fulltext search also indexes files ending with .pdf (but do not having an explicit file type set). [#10193](https://github.com/JabRef/jabref/issues/10193)
-- We changed the arrangement of the lists in the "Citation relations" tab. `Cites` are now on the left and `Cited by` on the right [#10572](https://github.com/JabRef/jabref/pull/10752)
+- We changed the arrangement of the lists in the "Citation relations" tab. `Cites` are now on the left and `Cited by` on the right [#10752](https://github.com/JabRef/jabref/pull/10752)
 - Sub libraries based on `aux` file can now also be generated if some citations are not found library. [#10775](https://github.com/JabRef/jabref/pull/10775)
 - We rearranged the tab order in the entry editor and renamed the "Scite Tab" to "Citation information". [#10821](https://github.com/JabRef/jabref/issues/10821)
 - We changed the duplicate handling in the Import entries dialog. Potential duplicate entries are marked with an icon and importing will now trigger the merge dialog [#10914](https://github.com/JabRef/jabref/pull/10914)
@@ -277,7 +466,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 
 ### Added
 
-- We added a scite.ai tab in the entry editor that retrieves 'Smart Citation' tallies for citations that have a DOI. [koppor#375](https://github.com/koppor/jabref/issues/375)  
+- We added a scite.ai tab in the entry editor that retrieves 'Smart Citation' tallies for citations that have a DOI. [koppor#375](https://github.com/koppor/jabref/issues/375)
 - We added a dropdown menu to let users change the reference library during AUX file import. [#10472](https://github.com/JabRef/jabref/issues/10472)
 - We added a button to let users reset the cite command to the default value. [#10569](https://github.com/JabRef/jabref/issues/10569)
 - We added the option to use System Preference for Light/Dark Theme [#8729](https://github.com/JabRef/jabref/issues/8729).
@@ -405,7 +594,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 ### Changed
 
 - We replaced "Close" by "Close library" and placed it after "Save all" in the File menu. [#10043](https://github.com/JabRef/jabref/pull/10043)
-- We upgraded to Lucene 9.7 for the fulltext search. The search index will be rebuild. [#9584](https://github.com/JabRef/jabref/pull/10036)
+- We upgraded to Lucene 9.7 for the fulltext search. The search index will be rebuild. [#10036](https://github.com/JabRef/jabref/pull/10036)
 - 'Get full text' now also checks the file url. [#568](https://github.com/koppor/jabref/issues/568)
 - JabRef writes a new backup file only if there is a change. Before, JabRef created a backup upon start. [#9679](https://github.com/JabRef/jabref/pull/9679)
 - We modified the `Add Group` dialog to use the most recently selected group hierarchical context. [#9141](https://github.com/JabRef/jabref/issues/9141)
@@ -515,11 +704,10 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 ### Changed
 
 - We changed database structure: in MySQL/MariaDB we renamed tables by adding a `JABREF_` prefix, and in PGSQL we moved tables in `jabref` schema. We added `VersionDBStructure` variable in `METADATA` table to indicate current version of structure, this variable is needed for automatic migration. [#9312](https://github.com/JabRef/jabref/issues/9312)
-- We moved some preferences options to a new tab in the preferences dialog. [#9442](https://github.com/JabRef/jabref/pull/9308)
+- We moved some preferences options to a new tab in the preferences dialog. [#9442](https://github.com/JabRef/jabref/pull/9442)
 - We renamed "Medline abbreviation" to "dotless abbreviation". [#9504](https://github.com/JabRef/jabref/pull/9504)
 - We now have more "dots" in the offered journal abbreviations. [#9504](https://github.com/JabRef/jabref/pull/9504)
 - We now disable the button "Full text search" in the Searchbar by default [#9527](https://github.com/JabRef/jabref/pull/9527)
-
 
 ### Fixed
 
@@ -790,7 +978,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - We added the option to copy the DOI of an entry directly from the context menu copy submenu. [#7826](https://github.com/JabRef/jabref/issues/7826)
 - We added a fulltext search feature. [#2838](https://github.com/JabRef/jabref/pull/2838)
 - We improved the deduction of bib-entries from imported fulltext pdfs. [#7947](https://github.com/JabRef/jabref/pull/7947)
-- We added unprotect_terms to the list of bracketed pattern modifiers [#7826](https://github.com/JabRef/jabref/pull/7960)
+- We added `unprotect_terms` to the list of bracketed pattern modifiers [#7960](https://github.com/JabRef/jabref/pull/7960)
 - We added a dialog that allows to parse metadata from linked pdfs. [#7929](https://github.com/JabRef/jabref/pull/7929)
 - We added an icon picker in group edit dialog. [#6142](https://github.com/JabRef/jabref/issues/6142)
 - We added a preference to Opt-In to JabRef's online metadata extraction service (Grobid) usage. [#8002](https://github.com/JabRef/jabref/pull/8002)
@@ -1033,7 +1221,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - We fixed the wrong behavior that font size changes are not reflected in dialogs. [#6039](https://github.com/JabRef/jabref/issues/6039)
 - We fixed the failure to Copy citation key and link. [#5835](https://github.com/JabRef/jabref/issues/5835)
 - We fixed an issue where the sort order of the entry table was reset after a restart of JabRef. [#6898](https://github.com/JabRef/jabref/pull/6898)
-- We fixed an issue where no longer a warning was displayed when inserting references into LibreOffice with an invalid "ReferenceParagraphFormat". [#6907](https://github.com/JabRef/jabref/pull/60907).
+- We fixed an issue where no longer a warning was displayed when inserting references into LibreOffice with an invalid "ReferenceParagraphFormat". [#6907](https://github.com/JabRef/jabref/pull/6907).
 - We fixed an issue where a selected field was not removed after the first click in the custom entry types dialog. [#6934](https://github.com/JabRef/jabref/issues/6934)
 - We fixed an issue where a remove icon was shown for standard entry types in the custom entry types dialog. [#6906](https://github.com/JabRef/jabref/issues/6906)
 - We fixed an issue where it was impossible to connect to OpenOffice/LibreOffice on Mac OSX. [#6970](https://github.com/JabRef/jabref/pull/6970)
@@ -1113,7 +1301,7 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 - We improved the "Possible duplicate entries" window to remember its size and position throughout a session. [#6582](https://github.com/JabRef/jabref/issues/6582)
 - We divided the toolbar into small parts, so if the application window is to small, only a part of the toolbar is moved into the chevron popup. [#6682](https://github.com/JabRef/jabref/pull/6682)
 - We changed the layout for of the buttons in the Open Office side panel to ensure that the button text is always visible, specially when resizing. [#6639](https://github.com/JabRef/jabref/issues/6639)
-- We merged the two new library commands in the file menu to one which always creates a new library in the default library mode. [#6359](https://github.com/JabRef/jabref/pull/6539#issuecomment-641056536)
+- We merged the two new library commands in the file menu to one which always creates a new library in the default library mode. [#6539](https://github.com/JabRef/jabref/pull/6539#issuecomment-641056536)
 
 ### Fixed
 
@@ -1465,7 +1653,9 @@ The changelog of JabRef 4.x is available at the [v4.3.1 tag](https://github.com/
 The changelog of JabRef 3.x is available at the [v3.8.2 tag](https://github.com/JabRef/jabref/blob/v3.8.2/CHANGELOG.md).
 The changelog of JabRef 2.11 and all previous versions is available as [text file in the v2.11.1 tag](https://github.com/JabRef/jabref/blob/v2.11.1/CHANGELOG).
 
-[Unreleased]: https://github.com/JabRef/jabref/compare/v5.15...HEAD
+[Unreleased]: https://github.com/JabRef/jabref/compare/v6.0-alpha2...HEAD
+[6.0-alpha2]: https://github.com/JabRef/jabref/compare/v6.0-alpha...v6.0-alpha2
+[6.0-alpha]: https://github.com/JabRef/jabref/compare/v5.15...v6.0-alpha
 [5.15]: https://github.com/JabRef/jabref/compare/v5.14...v5.15
 [5.14]: https://github.com/JabRef/jabref/compare/v5.13...v5.14
 [5.13]: https://github.com/JabRef/jabref/compare/v5.12...v5.13
@@ -1484,4 +1674,5 @@ The changelog of JabRef 2.11 and all previous versions is available as [text fil
 [5.0]: https://github.com/JabRef/jabref/compare/v5.0-beta...v5.0
 [5.0-beta]: https://github.com/JabRef/jabref/compare/v5.0-alpha...v5.0-beta
 [5.0-alpha]: https://github.com/JabRef/jabref/compare/v4.3...v5.0-alpha
-<!-- markdownlint-disable-file MD012 MD024 MD033 MD053 -->
+
+<!-- markdownlint-disable-file MD024 MD033 MD053 -->

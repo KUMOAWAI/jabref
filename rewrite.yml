@@ -101,14 +101,15 @@ recipeList:
 
   - org.openrewrite.java.migrate.io.ReplaceFileInOrOutputStreamFinalizeWithClose
   - org.openrewrite.java.migrate.net.JavaNetAPIs
-  - org.openrewrite.java.migrate.net.URLConstructorsToURIRecipes
+  - org.openrewrite.java.migrate.net.URLConstructorToURICreate
+  - org.openrewrite.java.migrate.net.URLConstructorsToNewURI
   - org.openrewrite.java.migrate.util.OptionalNotEmptyToIsPresent
   - org.openrewrite.java.migrate.util.OptionalNotPresentToIsEmpty
   - org.openrewrite.java.migrate.util.SequencedCollection
   - org.openrewrite.java.migrate.lang.StringFormatted
 
   - org.openrewrite.java.RemoveObjectsIsNull
-  - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
+ # - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
 
   - org.openrewrite.java.testing.junit5.AssertTrueInstanceofToAssertInstanceOf
   - org.openrewrite.java.testing.junit5.RemoveTryCatchFailBlocks
@@ -186,14 +187,15 @@ recipeList:
   - org.openrewrite.staticanalysis.SortedSetStreamToLinkedHashSet
   - org.openrewrite.staticanalysis.StaticMethodNotFinal
   - org.openrewrite.staticanalysis.StringLiteralEquality
-  - org.openrewrite.staticanalysis.TypecastParenPad
+  # Disabled, because of https://github.com/openrewrite/rewrite-static-analysis/issues/561
+  # - org.openrewrite.staticanalysis.TypecastParenPad
   - org.openrewrite.staticanalysis.UnwrapRepeatableAnnotations
   - org.openrewrite.staticanalysis.UpperCaseLiteralSuffixes
   - org.openrewrite.staticanalysis.UseDiamondOperator
 #  - org.openrewrite.staticanalysis.UseJavaStyleArrayDeclarations
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
 #  - org.openrewrite.staticanalysis.UseListSort
-  - org.openrewrite.staticanalysis.UseObjectNotifyAll
+#  - org.openrewrite.staticanalysis.UseObjectNotifyAll
   - org.openrewrite.staticanalysis.UseStandardCharset
   - org.openrewrite.staticanalysis.UseStringReplace
   - org.openrewrite.staticanalysis.UseSystemLineSeparator
@@ -209,7 +211,14 @@ recipeList:
   - org.openrewrite.java.testing.junit5.RemoveDuplicateTestTemplates
   - org.openrewrite.java.testing.junit5.RemoveTryCatchFailBlocks
   - org.openrewrite.java.testing.junit5.LifecycleNonPrivate
-  - org.openrewrite.java.testing.junit5.StaticImports
+  # Does not work on some JDK releases. See https://github.com/openrewrite/rewrite-logging-frameworks/issues/177.
+  # - org.openrewrite.java.testing.junit5.StaticImports
 
   # Logging
-  - org.openrewrite.java.logging.slf4j.Slf4jBestPractices
+  # cannot use "org.openrewrite.java.logging.slf4j.Slf4jBestPractices", because we sometimes really want "LOGGER.debug" instead of "LOGGER.error"
+  #   NOT: https://docs.openrewrite.org/recipes/java/logging/catchblockloglevel
+  # Manual collection of https://docs.openrewrite.org/recipes/java/logging/slf4j/slf4jbestpractices
+  - org.openrewrite.java.logging.slf4j.LoggersNamedForEnclosingClass
+  - org.openrewrite.java.logging.slf4j.ParameterizedLogging
+  - org.openrewrite.java.logging.slf4j.Slf4jLogShouldBeConstant
+  - org.openrewrite.java.logging.slf4j.CompleteExceptionLogging
